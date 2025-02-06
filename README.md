@@ -6,12 +6,12 @@ This is only to see code that each other is working on. This is NOT yet the fina
 2. Clone repo to your local pc:
    - git clone (ssh)
 4. Make changes to your own folders locally, then:
-  - cd into repo
-  - git add .
-  - git commit -m "made changes to my folder"
-  - git push origin main
+   - cd into repo
+   - git add .
+   - git commit -m "made changes to my folder"
+   - git push origin main
 4. Update the repo everytime you open it again:
-  - git pull origin main
+   - git pull origin main
 
 **Note**
 You may need to do a git merge if your changes affects other folders
