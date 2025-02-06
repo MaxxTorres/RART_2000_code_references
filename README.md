@@ -5,7 +5,7 @@ This is only to see code that each other is working on. This is NOT yet the fina
 1. Check your email and accept invite
 2. Clone repo to your local pc:
    - git clone (ssh)
-3. Make changes to your own folders locally, then:
+4. Make changes to your own folders locally, then:
   - cd into repo
   - git add .
   - git commit -m "made changes to my folder"
