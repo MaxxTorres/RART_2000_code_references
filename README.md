@@ -13,4 +13,5 @@ This is only to see code that each other is working on. This is NOT yet the fina
 4. Update the repo everytime you open it again:
    - git pull origin main
 
-**Note: **You may need to do a git merge if your changes affects other folders
+**Note:**
+You may need to do a git merge if your changes affects other folders
