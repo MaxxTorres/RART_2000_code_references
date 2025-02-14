@@ -2,6 +2,7 @@
 This is only to see code that each other is working on. This is NOT yet the final repo for our software.
 
 **Instructions**
+
 Setup:
 1. Check your email and accept invite
 2. Clone repo to your local pc
