@@ -9,6 +9,7 @@ Setup:
 
 
 Quick Open / Changes:
+
 3. Update the repo everytime you open it
    - cd into repo (eg. in windows shell: "cd C:\Users\...\RART_2000_code_references") 
    - type: git pull origin main
