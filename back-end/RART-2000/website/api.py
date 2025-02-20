@@ -18,7 +18,6 @@ def get_notes():
     return jsonify(notes)
 
 
-# Add these new routes to your existing api.py
 
 @api.route('/login', methods=['POST'])
 def api_login():
@@ -31,7 +30,7 @@ def api_login():
         return jsonify({"error": "Email does not exist"}), 401
     
     if check_password_hash(user.password, password):
-        # Return user info (in a real app, you'd return a token)
+        # Return user info 
         return jsonify({
             "id": user.id,
             "email": user.email,
