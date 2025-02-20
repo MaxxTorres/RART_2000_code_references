@@ -1,4 +1,3 @@
-# Create a new file called api.py in your website folder
 from flask import request, Blueprint, jsonify # type: ignore
 from flask_login import login_required, current_user # type: ignore
 from .models import Note, User
