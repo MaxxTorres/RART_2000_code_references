@@ -1,4 +1,5 @@
 import React from "react";
+// COMPONENT CURRENTLY NOT BEING USED
 
 function TextInput({ label, type = "text", placeholder, value, onChange, name }) {
   return (

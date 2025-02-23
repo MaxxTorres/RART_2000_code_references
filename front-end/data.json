@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Max Torres",
+        "company": "max company",
+        "email": "max@gmail.com",
+        "password": "max123"
+    },
+    {
+        "name": "Max Torres 2",
+        "company": "max company 2",
+        "email": "max2@gmail.com",
+        "password": "max123"
+    },
+    {
+        "name": "Max Torres 3",
+        "company": "max company 3",
+        "email": "max3@gmail.com",
+        "password": "max123"
+    },
+    {
+        "name": "Max Torres 4",
+        "company": "max company 4",
+        "email": "max4@gmail.com",
+        "password": "max123"
+    }
+]
