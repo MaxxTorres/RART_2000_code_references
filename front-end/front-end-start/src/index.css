@@ -5,3 +5,11 @@
 .text_input {
     @apply m-1 h-5 w-96 p-5 text-lg border rounded-sm focus:outline-none focus:ring focus:ring-blue-500;
 }
+
+.header {
+    @apply m-2 underline text-xl;
+}
+
+.data {
+    @apply text-blue-600 font-medium
+}
