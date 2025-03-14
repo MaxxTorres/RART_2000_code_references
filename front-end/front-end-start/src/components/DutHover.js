@@ -38,7 +38,9 @@ export default function DutHover(props) {
             <p>Avg DCR: </p>
             <NavLink 
                 to = "/module"
-                className="text-center m-3 p-1 rounded-md bg-zinc-300 hover:bg-gray-200">View Module</NavLink>
+                state = {{ dut_no: id-1}}
+                className="text-center m-3 p-1 rounded-md bg-zinc-300 hover:bg-gray-200">View Module
+            </NavLink>
         </div>
     )
 }

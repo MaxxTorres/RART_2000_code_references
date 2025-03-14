@@ -84,7 +84,7 @@ export default function RegisterPage() {
 
                 <NavLink
                     to="/"
-                    className="m-3 mt-8 w-96 p-1 text-center rounded-md bg-white hover:bg-gray-200">
+                    className="m-3 w-96 p-1 text-center rounded-md bg-white hover:bg-gray-200">
                     Sign In
                 </NavLink>
             </div>
