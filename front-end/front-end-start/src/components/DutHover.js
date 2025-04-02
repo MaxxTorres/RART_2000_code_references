@@ -14,7 +14,7 @@ export default function DutHover(props) {
     }
    
     return (
-        <div className={`absolute rounded-md w-56 m-1 p-3 px-5 mt-14 bg-white border-2 
+        <div className={`absolute rounded-md w-64 m-1 p-3 px-5 mt-14 bg-white border-2 
             border-solid border-zinc-500 flex flex-col
             ${show | showStay ? "":"hidden"}`}
             style={{
@@ -32,10 +32,13 @@ export default function DutHover(props) {
                         </div>}
             </div>
             <p>On/Off Cycle:</p>
-            <p>Avg bounce period: </p>
-            <p>Avg bounce count: </p>
-            <p>Avg SCR: </p>
-            <p>Avg DCR: </p>
+            <p className = "mt-2">Average</p>
+            <div className="ml-2">
+                <p>Bounce Period (ms): </p>
+                <p>Bounce Count: </p>
+                <p>SCR (ohms): </p>
+                <p>DCR (ohms): </p>
+            </div>
             <NavLink 
                 to = "/module"
                 state = {{ dut_no: id-1}}

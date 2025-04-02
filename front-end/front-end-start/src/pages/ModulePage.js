@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState} from 'react'
 import NavBar from '../components/NavBar'
 import NavBarSide from '../components/NavBarSide'
 import { useLocation } from 'react-router-dom';
+import relayImage from '../assets/relay_pic.png'
+import { FaSdCard } from 'react-icons/fa6'
 
 // function getRandomInRange(min, max) {
 //   return (Math.random() * (max - min) + min).toFixed(2);
@@ -46,21 +48,53 @@ function ModulePage() {
   const location = useLocation();
   const {dut_no} = location.state || 0;
 
+  //-----------------------------------------------------
+  const [data, setData] = useState(null);
+
+    const fetchData = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/api/data"); // Change to your Flask API endpoint
+            const result = await response.json();
+            setData(result);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
+  //FETCHING DATA FROM API EVERY 5 MINUTES
+  useEffect(() => {
+    fetchData(); // Fetch immediately on mount
+
+    const interval = setInterval(() => {
+        fetchData(); // Fetch every 5 minutes
+    }, 300000); // 300,000 ms = 5 minutes
+
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, []);
+  //-----------------------------------------------------
+
   return (
   <div className="bg-zinc-600 min-h-screen">
   <NavBar />
+
   <div className = "h-screen flex flex-row">
       <NavBarSide />
       <div className = "m-8 p-3 h-5/6 bg-white w-1/4 flex flex-col">
         <p className = "m-2 underline text-xl">Module Unit Control</p>
-        <p className = "m-5 mt-0 mb-0 text-xl">Module Memory Usage:</p>
-        <p className = "m-5 mt-0 text-xl">{`${module_data[dut_no].memory} gb / 30 gb`}</p>
+        <p className = "m-5 mb-0 text-xl">Module Memory Usage:</p>
+        <div className = "flex flex-row items-center gap-3 m-5 mt-0 text-xl"> <FaSdCard /> {`${module_data[dut_no].memory} gb / 30 gb`}</div>
         <button className = "text-center m-3 p-1 rounded-md bg-zinc-300 hover:bg-gray-200">START</button>
         <button className = "text-center m-3 p-1 rounded-md bg-zinc-300 hover:bg-gray-200">PAUSE</button>
         <button className = "text-center m-3 p-1 rounded-md bg-zinc-300 hover:bg-gray-200">RESET</button>
       </div>
 
       <div className = "rounded-xl border-4 border-stone-400 relative m-8 ml-0 p-3 h-5/6 bg-zinc-300 w-3/4">
+          <div className = "absolute w-72 h-52 bg-cover"
+            style={{backgroundImage: `url(${relayImage})`,
+            right: "130px",
+            bottom: "80px",}}>
+          </div>
+
           <p className = "!text-2xl header font-bold">{`DUT-${dut_no} (${module_data[dut_no].id}) Results`}</p>
 
           <div className = "w-full mt-20 flex flex-row gap-28 justify-center text-xl">

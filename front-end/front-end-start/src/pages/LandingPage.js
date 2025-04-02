@@ -1,6 +1,7 @@
 import React from 'react'
 import NavBar from '../components/NavBar'
 import NavBarSide from '../components/NavBarSide'
+import { FaDatabase, FaSpinner, FaCircleCheck, FaCirclePause, FaCircleExclamation } from "react-icons/fa6";
 
 function LandingPage() {
   return (
@@ -9,15 +10,18 @@ function LandingPage() {
   <div className = "h-screen flex flex-row">
       <NavBarSide />
       <div className = "m-8 p-3 h-5/6 bg-white w-1/4 flex flex-col">
-        <p className = "header">Memory Usage</p>
+        <div className = "flex flex-row items-center">
+          <p className = "header">Memory Usage</p>
+          <FaDatabase />
+        </div>
         <p className = "m-5 mt-0 text-xl">256 gb / 500 gb</p>
         <p className = "header">Devices Under Test (DUT)</p>
-        <div className = "flex flex-col gap-2 m-5 mt-0 text-xl">
+        <div className = "flex flex-col gap-4 m-5 mt-0 text-xl">
             <p>Total DUTs: 16</p>
-            <p>In-progress: 13</p>
-            <p>Competed: 0</p>
-            <p>Paused: 1</p>
-            <p>Failed: 2</p>
+            <div className = "flex flex-row items-center gap-2"> <FaSpinner className="animate-spin text-blue-500 text-xl" /> In-progress: 13</div>
+            <div className = "flex flex-row items-center gap-2"> <FaCircleCheck/> Completed: 2</div>
+            <div className = "flex flex-row items-center gap-2"> <FaCirclePause/> Paused: 2</div>
+            <div className = "flex flex-row items-center gap-2"> <FaCircleExclamation/> Failed: 1</div>
         </div>
       </div>
 
