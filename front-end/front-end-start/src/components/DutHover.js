@@ -14,7 +14,7 @@ export default function DutHover(props) {
     }
    
     return (
-        <div className={`absolute rounded-md w-64 m-1 p-3 px-5 mt-14 bg-white border-2 
+        <div className={`z-10 absolute rounded-md w-64 m-1 p-3 px-5 mt-14 bg-white border-2 
             border-solid border-zinc-500 flex flex-col
             ${show | showStay ? "":"hidden"}`}
             style={{

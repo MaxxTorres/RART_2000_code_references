@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react'
 import NavBar from '../components/NavBar'
 import NavBarSide from '../components/NavBarSide'
 import { useLocation } from 'react-router-dom';
-import relayImage from '../assets/relay_pic.png'
+import relayImage from '../assets/relay_pic_crop.png'
 import { FaSdCard } from 'react-icons/fa6'
 
 // function getRandomInRange(min, max) {
@@ -86,25 +86,27 @@ function ModulePage() {
         <button className = "text-center m-3 p-1 rounded-md bg-zinc-300 hover:bg-gray-200">START</button>
         <button className = "text-center m-3 p-1 rounded-md bg-zinc-300 hover:bg-gray-200">PAUSE</button>
         <button className = "text-center m-3 p-1 rounded-md bg-zinc-300 hover:bg-gray-200">RESET</button>
+        <div className = "mt-10 flex w-full justify-center">
+          <div className = "w-52 h-52 bg-contain bg-no-repeat" style={{backgroundImage: `url(${relayImage})`}}></div>
+        </div>
       </div>
 
-      <div className = "rounded-xl border-4 border-stone-400 relative m-8 ml-0 p-3 h-5/6 bg-zinc-300 w-3/4">
-          <div className = "absolute w-72 h-52 bg-cover"
-            style={{backgroundImage: `url(${relayImage})`,
-            right: "130px",
-            bottom: "80px",}}>
+      <div className = "rounded-xl border-4 border-stone-400 relative m-8 ml-0 h-5/6 bg-zinc-300 w-3/4">
+      
+          <div className = "w-full bg-zinc-600 p-1 mt-3 border-b-4 border-stone-400">
+            <p className = "!text-2xl !no-underline text-white header font-bold">{`DUT-${dut_no+1} (${module_data[dut_no].id}) Results`}</p>
           </div>
 
-          <p className = "!text-2xl header font-bold">{`DUT-${dut_no} (${module_data[dut_no].id}) Results`}</p>
-
           <div className = "w-full mt-20 flex flex-row gap-28 justify-center text-xl">
-            <div className = "border-l-4 p-5 border-black border-double">
+            <div className = "data_container">
+                <div className = "data_header">Bounce</div>
                 <p>Max bounce count: <span className = "data">{module_data[dut_no].max_b_count}</span></p>
                 <p className = "mb-10">Min bounce count: <span className = "data">{module_data[dut_no].min_b_count}</span></p>
                 <p>Max bounce period (ms): <span className = "data">{module_data[dut_no].max_b_period}</span></p>
                 <p>Min bounce period (ms): <span className = "data">{module_data[dut_no].min_b_period}</span></p>
             </div>
-            <div className = "border-l-4 p-5 border-black border-double">
+            <div className = "data_container">
+              <div className = "data_header">Contact Resistance</div>
                 <p>Max SCR (ohms): <span className = "data">{module_data[dut_no].max_scr}</span></p>
                 <p className = "mb-10">Min SCR (ohms): <span className = "data">{module_data[dut_no].min_scr}</span></p>
                 <p>Max DCR (ohms): <span className = "data">{module_data[dut_no].max_dcr}</span></p>
@@ -112,7 +114,7 @@ function ModulePage() {
             </div>
           </div>
 
-          <div className = "w-full pr-7 absolute bottom-0">
+          <div className = "w-full p-5 absolute bottom-0">
             <p className = "ml-3 text-lg">Test Start Time: March 5, 10:45am</p>
             <p className = "ml-3 text-lg">Time Remaining (EST): 130 hours</p>
             <div className = "m-3 h-10 rounded-lg bg-zinc-500">
