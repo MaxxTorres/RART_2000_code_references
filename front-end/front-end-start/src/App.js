@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from 'react'
+import {DeviceProvider} from './context/DeviceContext'
 import {Routes, Route} from 'react-router-dom'
 import RegisterPage from './pages/RegisterPage'
 import SignPage from './pages/SignPage'
@@ -22,6 +23,7 @@ function App() {
   }, [])
 
   return (
+    <DeviceProvider>
     <div>
       <Routes>
         <Route path="/" element={<SignPage />} />
@@ -31,6 +33,7 @@ function App() {
         <Route path="module" element={<ModulePage />} />
       </Routes>
     </div>
+    </DeviceProvider>
   );
 }
 

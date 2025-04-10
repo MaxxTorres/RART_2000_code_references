@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
+import { DeviceContext } from '../context/DeviceContext';
 import NavBar from '../components/NavBar'
 import NavBarSide from '../components/NavBarSide'
 import DutSmall from '../components/DutSmall'
@@ -9,26 +10,8 @@ import layerImage_1 from '../assets/layer_1.png'
 import layerImage_2 from '../assets/layer_2.png'
 import { FaLayerGroup } from "react-icons/fa6"
 
-const duts = [
-    {id: 1, progress: 40, isFailed: false},
-    {id: 2, progress: 30, isFailed: false},
-    {id: 3, progress: 45, isFailed: true},
-    {id: 4, progress: 20, isFailed: false},
-    {id: 5, progress: 60, isFailed: false},
-    {id: 6, progress: 37, isFailed: true},
-    {id: 7, progress: 15, isFailed: true},
-    {id: 8, progress: 84, isFailed: false},
-    {id: 9, progress: 40, isFailed: true},
-    {id: 10, progress: 30, isFailed: false},
-    {id: 11, progress: 45, isFailed: true},
-    {id: 12, progress: 20, isFailed: false},
-    {id: 13, progress: 60, isFailed: true},
-    {id: 14, progress: 37, isFailed: true},
-    {id: 15, progress: 15, isFailed: false},
-    {id: 16, progress: 84, isFailed: false},
-]
-
 export default function ControlPage() {
+    const {deviceData} = useContext(DeviceContext)
     const [dutsIndex, setIndex] = useState([0,8])
     const [showAlert, setShowAlert] = useState(false)
     const [layer, setLayer] = useState(1)
@@ -50,7 +33,7 @@ export default function ControlPage() {
     <div className="bg-zinc-600 min-h-screen">
     <NavBar toggleAlert={toggleAlert}/>
     {showAlert && <AlertSide showAlert={showAlert}/>}
-    <DutHover mouse_pos={[hover.mouse_x, hover.mouse_y]} show={hover.show} id={duts[hover.id-1].id} progress={duts[hover.id-1].progress} isFailed={duts[hover.id-1].isFailed}/>
+    <DutHover mouse_pos={[hover.mouse_x, hover.mouse_y]} show={hover.show} id={deviceData[hover.id-1].id} progress={deviceData[hover.id-1].progress} isFailed={deviceData[hover.id-1].isFailed}/>
 
     <div className = "h-screen flex flex-row">
         
@@ -78,7 +61,7 @@ export default function ControlPage() {
             <div className = "header">Devices Under Test</div>
             <div className = "max-w-xl mt-10 gap-x-28 flex flex-wrap justify-center"
                 style={{backgroundImage: `url(${mcuImage})`}}>
-                {duts.slice(dutsIndex[0], dutsIndex[1]).map((dut) => (
+                {deviceData.slice(dutsIndex[0], dutsIndex[1]).map((dut) => (
                     <DutSmall onLeave={handleMouseLeave} onHover={handleHover} number={dut.id} isFailed={dut.isFailed} progress={dut.progress}/>
                 ))}   
             </div>

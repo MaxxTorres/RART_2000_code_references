@@ -15,9 +15,9 @@
 }
 
 .data_container {
-    @apply relative flex flex-col gap-4 p-8 bg-gray-400 rounded-sm 
+    @apply relative flex flex-col gap-4 p-8 bg-zinc-300 rounded-sm border-4 border-stone-400 bg-white
 }
 
 .data_header {
-    @apply absolute -top-7 -left-5 bg-white p-2 rounded-md text-base
+    @apply text-white font-medium absolute -top-7 -left-5 bg-stone-400 p-2 rounded-md text-base
 }
