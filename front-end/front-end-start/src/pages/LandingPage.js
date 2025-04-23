@@ -45,8 +45,9 @@ function LandingPage() {
           <div className = "w-full pr-7 absolute bottom-0">
             <p className = "ml-3 text-lg">Test Progress</p>
             <div className = "m-3 h-10 rounded-lg bg-zinc-500">
-                <div className = "bg-green-500 h-10 w-1/3 rounded-lg">
-                    <p className = "text-2xl p-0.5 pl-3">30%</p>
+                <div className = "bg-green-500 h-10 rounded-lg"
+                  style = {{width: `${systemData[0].test_progress}%`}}>
+                    <p className = "text-2xl p-0.5 pl-3">{systemData[0].test_progress}%</p>
                 </div>
             </div>
           </div>

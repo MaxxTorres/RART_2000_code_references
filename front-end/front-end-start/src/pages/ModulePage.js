@@ -64,7 +64,8 @@ function ModulePage() {
             <p className = "ml-3 text-lg">Test Start Time: March 5, 10:45am</p>
             <p className = "ml-3 text-lg">Time Remaining (EST): 130 hours</p>
             <div className = "m-3 h-10 rounded-lg bg-zinc-500">
-                <div className = "bg-green-500 h-10 w-1/3 rounded-lg">
+                <div className = "bg-green-500 h-10 rounded-lg"
+                  style = {{width: `${deviceData[dut_no].progress}%`}}>
                     <p className = "text-2xl p-0.5 pl-3">{deviceData[dut_no].progress}%</p>
                 </div>
             </div>

@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { DeviceContext } from '../context/DeviceContext'
 import {NavLink} from 'react-router-dom'
 
 export default function DutHover(props) {
     const {mouse_pos, show, id, progress, isFailed, cycle, bounce} = props
     const [showStay, setshowStay] = useState(false)
+    const {deviceData} = useContext(DeviceContext)
 
     const handleMouseEnter = () => {
         setshowStay(true)
@@ -15,7 +17,7 @@ export default function DutHover(props) {
    
     return (
         <div className={`z-10 absolute rounded-md w-64 m-1 p-3 px-5 mt-14 bg-white border-2 
-            border-solid border-zinc-500 flex flex-col
+            border-solid border-zinc-500 flex flex-col shadow
             ${show | showStay ? "":"hidden"}`}
             style={{
                 left: `${mouse_pos[0]}px`,
@@ -28,8 +30,11 @@ export default function DutHover(props) {
                 Progress: 
                 {isFailed ? <p className="text-red-500">Relay Failed</p>
                     : <div className="border border-solid border-black rounded-sm w-full bg-zinc-500">
-                        <div className = "pl-2 w-1/3 bg-green-500">{progress}%</div>
-                        </div>}
+                        <div className = "pl-2 bg-green-500"
+                            style = {{width: `${deviceData[id-1].progress}%`}}>
+                            {deviceData[id-1].progress}%
+                        </div>
+                    </div>}
             </div>
             <p>On/Off Cycle:</p>
             <p className = "mt-2">Average</p>

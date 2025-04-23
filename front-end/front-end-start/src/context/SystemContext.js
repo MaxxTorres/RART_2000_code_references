@@ -4,7 +4,7 @@ export const SystemContext = createContext();
 
 export const SystemProvider = ({ children }) => {
     const sampleSystemData = [
-        {"memory_used": 500, "memory_total": 1000, "duts_total": 16, "duts_inprogress": 10, "duts_completed": 1, "duts_paused": 2, "duts_failed": 3},
+        {"test_progress": 30, "memory_used": 500, "memory_total": 1000, "duts_total": 16, "duts_inprogress": 10, "duts_completed": 1, "duts_paused": 2, "duts_failed": 3},
         {"dut_errors": "none", "system_errors": "none"}
       ]
       

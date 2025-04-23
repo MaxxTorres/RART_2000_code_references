@@ -13,7 +13,7 @@ function DutSmall(props) {
 
     return (
         <div 
-            className = {`z-0 m-3 mb-10 p-3 border-4 text-center bg-stone-400 
+            className = {`z-0 m-3 mb-10 p-3 border-4 text-center bg-stone-400 shadow-lg
                 w-52 text-3xl ${isFailed ? "border-red-500 border-dashed animate-pulse" : "border-white"}`}
                 >
             <div
