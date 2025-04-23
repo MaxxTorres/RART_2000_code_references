@@ -1,24 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-// function getRandomInRange(min, max) {
-//   return (Math.random() * (max - min) + min).toFixed(2);
-// }
-
-// const module_data = Array.from({ length: 16 }, (_, i) => ({
-//   id: `#149954-SIP-${i + 1}`,
-//   memory: getRandomInRange(1, 30),
-//   min_b_count: getRandomInRange(100, 1000),
-//   max_b_count: getRandomInRange(100, 1000),
-//   max_b_period: getRandomInRange(1, 10),
-//   min_b_period: getRandomInRange(1, 10),
-//   max_scr: getRandomInRange(1, 20),
-//   min_scr: getRandomInRange(1, 20),
-//   max_dcr: getRandomInRange(1, 20),
-//   min_dcr: getRandomInRange(1, 20)
-// }));
-
-// console.log(module_data);
-
 export const DeviceContext = createContext();
 
 export const DeviceProvider = ({ children }) => {
@@ -74,3 +55,23 @@ export const DeviceProvider = ({ children }) => {
         </DeviceContext.Provider>
     );
 };
+
+
+// function getRandomInRange(min, max) {
+//   return (Math.random() * (max - min) + min).toFixed(2);
+// }
+
+// const module_data = Array.from({ length: 16 }, (_, i) => ({
+//   id: `#149954-SIP-${i + 1}`,
+//   memory: getRandomInRange(1, 30),
+//   min_b_count: getRandomInRange(100, 1000),
+//   max_b_count: getRandomInRange(100, 1000),
+//   max_b_period: getRandomInRange(1, 10),
+//   min_b_period: getRandomInRange(1, 10),
+//   max_scr: getRandomInRange(1, 20),
+//   min_scr: getRandomInRange(1, 20),
+//   max_dcr: getRandomInRange(1, 20),
+//   min_dcr: getRandomInRange(1, 20)
+// }));
+
+// console.log(module_data);

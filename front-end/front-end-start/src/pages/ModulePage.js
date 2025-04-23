@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext} from 'react'
 import { DeviceContext } from '../context/DeviceContext';
 import NavBar from '../components/NavBar'
 import NavBarSide from '../components/NavBarSide'
+import AlertSide from '../components/AlertSide'
 import { useLocation } from 'react-router-dom';
 import relayImage from '../assets/relay_pic_crop.png'
 import { FaSdCard } from 'react-icons/fa6'
@@ -11,9 +12,16 @@ function ModulePage() {
   const location = useLocation();
   const {dut_no} = location.state || 0;
 
+  const [showAlert, setShowAlert] = useState(false)
+  
+  const toggleAlert = () => {
+    setShowAlert(!showAlert)
+  }
+
   return (
   <div className="bg-zinc-600 min-h-screen">
-  <NavBar />
+  <NavBar toggleAlert={toggleAlert}/>
+  {showAlert && <AlertSide showAlert={showAlert}/>}
 
   <div className = "h-screen flex flex-row">
       <NavBarSide />
