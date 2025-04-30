@@ -15,7 +15,7 @@
 }
 
 .data_container {
-    @apply relative flex flex-col gap-4 p-8 bg-zinc-300 rounded-sm border-4 border-stone-400 bg-white
+    @apply relative flex flex-col gap-4 p-8 bg-zinc-300 rounded-sm border-4 border-stone-400 bg-white shadow
 }
 
 .data_header {

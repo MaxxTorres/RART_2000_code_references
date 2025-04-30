@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useContext} from 'react'
+import { SystemContext } from '../context/SystemContext'
 import {NavLink} from 'react-router-dom'
 
 export default function AlertSide({showAlert}) {
-   
+   const {systemData} = useContext(SystemContext)
+
     return (
         <div className={`fixed top-0 -right-2 w-64 m-1 p-3 px-5 mt-14 bg-white border-2 
             border-solid border-zinc-500 flex flex-col z-10`}>
                 
-            <p>Found Errors: </p>
-
+            <p>Errors</p>
+            <p>DUT errors: {systemData[1].dut_errors}</p>
+            <p>System errors: {systemData[1].system_errors}</p>
 
             {/* <p className = "text-lg underline">DUT-{id}</p>
             <div className="my-3 flex flex-col">

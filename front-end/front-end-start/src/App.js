@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react'
 import {DeviceProvider} from './context/DeviceContext'
+import {SystemProvider} from './context/SystemContext'
 import {Routes, Route} from 'react-router-dom'
 import RegisterPage from './pages/RegisterPage'
 import SignPage from './pages/SignPage'
@@ -10,20 +11,9 @@ import "./index.css";
 
 function App() {
 
-  const [data, setData] = useState([{}])
-
-  useEffect(() => {
-    fetch("/members").then(
-      res => res.json()
-    ).then(
-      data => {
-        setData(data)
-      }
-    )
-  }, [])
-
   return (
     <DeviceProvider>
+    <SystemProvider>
     <div>
       <Routes>
         <Route path="/" element={<SignPage />} />
@@ -33,6 +23,7 @@ function App() {
         <Route path="module" element={<ModulePage />} />
       </Routes>
     </div>
+    </SystemProvider>
     </DeviceProvider>
   );
 }
