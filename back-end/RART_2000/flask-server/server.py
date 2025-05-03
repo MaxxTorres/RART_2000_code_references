@@ -86,46 +86,96 @@ class ContactResistance(db.Model):
     resistance = db.Column(db.Float, nullable=True)
 
 
-class DeviceData(db.Model):
-    tablename = 'device_data'
+# class DeviceData(db.Model):
+#     tablename = 'device_data'
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    isFailed = db.Column(db.Boolean, default=False)
-    progress = db.Column(db.Integer, default=0)
-    memory = db.Column(db.Float, default=0.0)
-    min_b_count = db.Column(db.Float, default=0.0)
-    max_b_count = db.Column(db.Float, default=0.0)
-    max_b_period = db.Column(db.Float, default=0.0)
-    min_b_period = db.Column(db.Float, default=0.0)
-    max_scr = db.Column(db.Float, default=0.0)
-    min_scr = db.Column(db.Float, default=0.0)
-    max_dcr = db.Column(db.Float, default=0.0)
-    min_dcr = db.Column(db.Float, default=0.0)
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(100), nullable=False)
+#     isFailed = db.Column(db.Boolean, default=False)
+#     progress = db.Column(db.Integer, default=0)
+#     memory = db.Column(db.Float, default=0.0)
+#     min_b_count = db.Column(db.Float, default=0.0)
+#     max_b_count = db.Column(db.Float, default=0.0)
+#     max_b_period = db.Column(db.Float, default=0.0)
+#     min_b_period = db.Column(db.Float, default=0.0)
+#     max_scr = db.Column(db.Float, default=0.0)
+#     min_scr = db.Column(db.Float, default=0.0)
+#     max_dcr = db.Column(db.Float, default=0.0)
+#     min_dcr = db.Column(db.Float, default=0.0)
+
+# @app.route('/api/devices', methods=['GET'])
+# def get_devices():
+#     devices = DeviceData.query.all()
+#     result = []
+
+#     for device in devices:
+#         result.append({
+#             "id": device.id,
+#             "name": device.name,
+#             "isFailed": device.isFailed,
+#             "progress": device.progress,
+#             "memory": device.memory,
+#             "min_b_count": device.min_b_count,
+#             "max_b_count": device.max_b_count,
+#             "max_b_period": device.max_b_period,
+#             "min_b_period": device.min_b_period,
+#             "max_scr": device.max_scr,
+#             "min_scr": device.min_scr,
+#             "max_dcr": device.max_dcr,
+#             "min_dcr": device.min_dcr
+#         })
+
+#     return jsonify(result)
 
 @app.route('/api/devices', methods=['GET'])
 def get_devices():
-    devices = DeviceData.query.all()
-    result = []
+    relays = Relay.query.all()
+    devices_data = []
 
-    for device in devices:
-        result.append({
-            "id": device.id,
-            "name": device.name,
-            "isFailed": device.isFailed,
-            "progress": device.progress,
-            "memory": device.memory,
-            "min_b_count": device.min_b_count,
-            "max_b_count": device.max_b_count,
-            "max_b_period": device.max_b_period,
-            "min_b_period": device.min_b_period,
-            "max_scr": device.max_scr,
-            "min_scr": device.min_scr,
-            "max_dcr": device.max_dcr,
-            "min_dcr": device.min_dcr
-        })
+    for relay in relays:
+        relay_name = f"Relay-{relay.relay_id}"
+        is_failed = False  # You can implement logic to set this based on thresholds
+        memory = 0.0  # You may compute this based on data size/volume
 
-    return jsonify(result)
+        all_cycles = relay.cycles
+        total_cycles = len(all_cycles)
+
+        bounce_counts = []
+        bounce_periods = []
+        resistances = []
+
+        for cycle in all_cycles:
+            if cycle.bounce_count is not None:
+                bounce_counts.append(cycle.bounce_count)
+
+            for bounce in cycle.bounces:
+                if bounce.bounce_start and bounce.bounce_end:
+                    period = (bounce.bounce_end - bounce.bounce_start).total_seconds()
+                    bounce_periods.append(period)
+
+            for cr in cycle.contact_resistances:
+                if cr.resistance is not None:
+                    resistances.append(cr.resistance)
+
+        device_info = {
+            "id": relay.relay_id,
+            "name": relay_name,
+            "isFailed": is_failed,
+            "progress": total_cycles,  # You can normalize this if needed
+            "memory": memory,  # Placeholder or calculated value
+            "min_b_count": min(bounce_counts) if bounce_counts else 0,
+            "max_b_count": max(bounce_counts) if bounce_counts else 0,
+            "min_b_period": min(bounce_periods) if bounce_periods else 0.0,
+            "max_b_period": max(bounce_periods) if bounce_periods else 0.0,
+            "min_scr": min(resistances) if resistances else 0.0,
+            "max_scr": max(resistances) if resistances else 0.0,
+            "min_dcr": min(resistances) if resistances else 0.0,
+            "max_dcr": max(resistances) if resistances else 0.0,
+        }
+
+        devices_data.append(device_info)
+
+    return jsonify(devices_data)
 
 # Create authentication routes
 @app.route('/api/register', methods=['POST'])
