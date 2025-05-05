@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.text_input {
+    @apply m-1 h-5 w-96 p-5 text-lg border rounded-sm focus:outline-none focus:ring focus:ring-blue-500;
+}
+
+.header {
+    @apply m-2 underline text-xl;
+}
+
+.data {
+    @apply text-blue-600 font-medium bg-white p-1 border-2 border-black rounded-md
+}
+
+.data_container {
+    @apply relative flex flex-col gap-4 p-8 bg-zinc-300 rounded-sm border-4 border-stone-400 bg-white shadow
+}
+
+.data_header {
+    @apply text-white font-medium absolute -top-7 -left-5 bg-stone-400 p-2 rounded-md text-base
+}
